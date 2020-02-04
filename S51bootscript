@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		python /projet/scriptCapteur.py
+		[ $?=0 ]&&echo"OK"||echo"FAIL"
+		;;
+	stop)
+		[ $?=0 ]&&echo"OK"||echo"FAIL"
+		;;
+	restart|reload)
+		$0 stop
+		sleep 1
+		$0 start
+		;;
+	*)
+		echo"Usage: $0 {start|stop|restart|reload}" >&2
+		exit 1
+		;;
+esac
+exit 0
